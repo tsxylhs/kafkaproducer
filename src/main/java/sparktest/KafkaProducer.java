@@ -40,9 +40,16 @@ public class KafkaProducer {
         final int COUNT = 10000;
 
         while (messageNo < COUNT) {
+        	try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             String key = String.valueOf(messageNo);
                int data1= (int) Math.round(Math.random() * 1000);
-                 String data=Integer.toString(data1);
+               
+                 String data=data1+",23";
             producer.send(new KeyedMessage<String, String>(TOPIC, key ,data));
             System.out.println(data);
             messageNo ++;
